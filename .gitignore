@@ -1,3 +1,4 @@
 .azure
 src/web/wwwroot
 src/web/web.config
+build/
