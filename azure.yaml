@@ -1,0 +1,19 @@
+name: azd-starter
+workflows:
+  up:
+    - azd: provision
+    - azd: deploy --all
+services:
+  web:
+    project: ./src/web
+    language: csharp
+    host: staticwebapp
+    dist: bin/Output/wwwroot
+    hooks:
+      predeploy:
+        posix:
+          shell: sh
+          run: dotnet publish -c Release --output ./bin/Output
+        windows:
+          shell: pwsh
+          run: dotnet publish -c Release --output ./bin/Output
